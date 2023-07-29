@@ -1,6 +1,6 @@
 # Kryptic Discord Bot 🤖
 
-![Kryptic Bot](https://i.postimg.cc/KzLp7R0f/image.png)
+![Kryptic Bot](https://i.postimg.cc/4dV7Jg3n/Screenshot-2023-07-29-162526.png)
 
 Welcome to the official README file for Kryptic, a versatile and fun Discord bot! Kryptic is packed with exciting features that include math functions, moderation commands, and meme functions to keep your Discord server engaged and entertained.
 
