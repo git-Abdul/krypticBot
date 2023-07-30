@@ -8,12 +8,9 @@ import asyncio
 import datetime
 import aiohttp
 import math
-from dotenv import load_dotenv
-
-load_dotenv()
 
 global ver
-ver = 'v1.6'
+ver = 'v1.6.1'
 
 intents = discord.Intents().all()
 
@@ -466,23 +463,27 @@ async def listroles(ctx):
     await ctx.send(embed=em)
 
 
-#mute
 @client.command()
 @commands.has_permissions(administrator=True)
 async def mute(ctx, user: discord.Member):
     guild = ctx.guild
-    perms = discord.Permissions(send_messages=False, read_messages=True)
-    await guild.create_role(name="🔇|Muted",
-                            colour=discord.Colour(0xff006a),
-                            permissions=perms)
     role = discord.utils.get(ctx.guild.roles, name="🔇|Muted")
+
+    if not role:
+        perms = discord.Permissions(send_messages=False, read_messages=True)
+        role = await guild.create_role(name="🔇|Muted",
+                                       colour=discord.Colour(0xff006a),
+                                       permissions=perms)
+
+    for channel in guild.text_channels:
+        await channel.set_permissions(role, send_messages=False)
+
     em = discord.Embed(
-        title='🔇Member muted',
+        title='🔇 Member muted',
         description=f'{user.mention} has been muted | {role.mention}',
         color=0xff006a)
     await user.add_roles(role)
     await ctx.send(embed=em)
-
 
 #unmute
 @client.command()
@@ -754,7 +755,7 @@ async def changelog(ctx):
                        timestamp=ctx.message.created_at)
     em.add_field(
         name=f'Changes:',
-        value='**Math Update**\n\n1. Added new images for math commands\n2. Added new `root` and `pow` commands'
+        value='**Bug fixes: **\n\n1. Fixed the `.mute` command. Previously the mute command used to generate more than one `🔇|Muted` role and the mute functionality did not work. Both these bugs have been fixed!'
     )
     em.set_thumbnail(url='https://i.postimg.cc/SRhJgzkS/logo-modified.png')
     em.set_image(url='https://i.postimg.cc/wv8KbfYt/pfp.png')
@@ -1208,5 +1209,5 @@ async def socials(ctx, ):
 
 #token
 keep_alive()
-TOKEN = os.getenv("DISCORD_TOKEN")
+TOKEN = os.environ.get("DISCORD_BOT_SECRET")
 client.run(TOKEN)
