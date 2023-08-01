@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <title>Kryptic • Status | New update!</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="script" href="main.js">
+    <link rel"icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Borel&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #fe676e;
+      }
+
+      .btn {
+        font-family: 'Poppins', sans-serif;
+      }
+
+      body a {
+        text-decoration: none;
+      }
+
+      .card {
+        background-color: var(--bg-color);
+        border: none;
+      }
+
+      .img-rounded {
+        border-radius: 25px;
+      }
+
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Borel&display=swap');
+
+      .root {
+        /* Enter variables: */
+        --bg-color: #d7d7f4;
+        --ui-color: #212529;
+        --accent-color: #8bb9fe;
+      }
+
+      body {
+        margin: 0;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-repeat: none;
+        background-color: #fc9842;
+        background-image: linear-gradient(315deg, #fc9842 0%, #fe5f75 74%);
+        color-scheme: "dark";
+        background-color: #dce3fb;
+      }
+
+      .btn {
+        font-family: 'Poppins', sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      ::-webkit-scrollbar {
+        width: 5px;
+        height: 3px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background-color: #36373d;
+      }
+
+      ::-webkit-scrollbar-track-piece {
+        background-color: #d7d7f4;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        height: 50px;
+        background-color: #36373d;
+        border-radius: 3px;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .bold-text {
+        margin-top: 275px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .arrow-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 60px auto;
+        width: 55px;
+        height: 55px;
+        border: 3px solid;
+        background-color: var(--ui-color);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .grid {
+        display: grid;
+        gap: 1rem;
+        min-height: 500px;
+        margin-top: 70px;
+        padding: 20px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
+      .grid div {
+        padding: 30px;
+        font-family: "Poppins";
+      }
+
+      .image-fluid {
+        width: 70%;
+        max-width: 10px;
+        height: auto;
+        align-self: center;
+      }
+
+      .heading {
+        margin-top: 300px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .img-rounded {
+        border-radius: 30px;
+      }
+
+      .arrow-button {
+        position: absolute;
+        top: 400px;
+        left: 50%;
+        margin-top: 40px;
+        width: 55px;
+        height: 55px;
+        border: 3px solid;
+        background-color: var(--ui-color);
+        border-radius: 50%;
+        cursor: pointer;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .arrow-button::before {
+        content: '';
+        width: 0;
+        height: 0;
+        margin-bottom: 8px;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 15px solid #282727;
+        transform: translateY(5px);
+      }
+
+      .skill-bar-container {
+        position: relative;
+        width: 70%;
+        border-radius: 4px;
+        text-align: center;
+        align-self: center;
+        background-color: whitesmoke;
+        margin-bottom: 0.5em;
+      }
+
+      .skill-bar-container .skill-bar {
+        display: block;
+        border-radius: 4px;
+        height: 25px;
+      }
+
+      .skill-bar-container .skill-bar.level1 {
+        width: 20%;
+        background-color: #51595e;
+      }
+
+      .skill-bar-container .skill-bar.level2 {
+        width: 25%;
+        background-color: #3f4549;
+      }
+
+      .skill-bar-container .skill-bar.level3 {
+        width: 57%;
+        background-color: #393e42;
+      }
+
+      .skill-bar-container .skill-bar.level4 {
+        width: 60%;
+        background-color: #282c2f;
+      }
+
+      .skill-bar-container .skill-bar.level5 {
+        width: 75%;
+        background-color: #1b1d1f;
+      }
+
+      .skill-bar-container .skill-name {
+        position: absolute;
+        left: 10px;
+        color: #ebe2e2;
+      }
+
+      .skill-bar-container .skill-percent {
+        position: absolute;
+        right: 10px;
+        color: #646161;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="home">
+      <!--Home-->
+    </div>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" data-bs-theme="light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#" style="font-family: Borel; margin-top: 16px; color: white;">Kryptic</a>
+        <button class="navbar-toggler bg-dark ml-auto" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynavbar">
+          <ul class="navbar-nav me-auto"></ul>
+          <form class="d-flex"></form>
+        </div>
+      </div>
+    </nav>
+    <div class="bold-text">
+      <h4 style="font-size: 40px;" class="bold-text">
+        <span style="font-family: Borel;">Kryptic is online!</span>
+        <h5></h5>
+      </h4>
+    </div>
+  </body>
+</html>
