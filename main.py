@@ -10,13 +10,16 @@ import aiohttp
 import math
 
 global ver
-ver = '`v1.6.2`'
+ver = '`v1.6.3`'
 
 intents = discord.Intents().all()
 
 client = commands.Bot(command_prefix='.', intents=intents)
 client.remove_command('help')
 
+    
+welcome_channels = {}
+member = ()
 
 #bot ready
 @client.event
@@ -24,10 +27,6 @@ async def on_ready():
     await client.change_presence(status=discord.Status.online,
                                  activity=discord.Game('.help'))
     print(f'Init Completed! ✅\nLogged in as: Kryptic #1648\nVersion: {ver} 🤖')
-
-
-member = ()
-
 
 @client.command(pass_context=True)
 async def news(ctx):
@@ -338,7 +337,7 @@ async def cmds(ctx):
     userEm.add_field(
         name='Moderation',
         value=
-        "`kick`, `ban`, `clear`, `removerole`, `removechannel`, `mute`, `unmute`, `lock`, `unlock` |      "
+        "`kick`, `ban`, `clear`, `removerole`, `removechannel`, `mute`, `unmute`, `lock`, `unlock`, `set_welcome` |      "
     )
     userEm.add_field(
         name='Bot Info',
@@ -383,7 +382,11 @@ async def help(ctx):
         value=
         "`8ball`, `say`, `roll`, `kill`, `poll`, `giveaway`, `meme`, `truth`, `dare`, `flip`, `dice` |     "
     )
-    userEm.add_field(name='Moderation', value="`kick`, `ban`, `clear` |      ")
+    userEm.add_field(
+        name='Moderation',
+        value=
+        "`kick`, `ban`, `clear`, `removerole`, `removechannel`, `mute`, `unmute`, `lock`, `unlock`, `set_welcome` |      "
+    )
     userEm.add_field(
         name='Bot Info',
         value=
@@ -830,6 +833,11 @@ async def updatelist(ctx):
         value=
         '\n1. Added `.updatelist` command or `.ul` that shows all updates to the bot'
     )
+    em.add_field(
+        name=f'Changes: `1.6.3`',
+        value=
+        '\n1. Added: 1. `.set_welcome` for server owners, now an embed will be sent for every new member joining a server'
+    )
     em.set_thumbnail(url='https://i.postimg.cc/SRhJgzkS/logo-modified.png')
     em.set_footer(text=f'Requested by {ctx.author}')
     await ctx.send(embed=em)
@@ -844,7 +852,7 @@ async def changelog(ctx):
     em.add_field(
         name=f'Changes:',
         value=
-        '\n\n**Added: **\n\n1. `.updatelist` command or `.ul` that shows all updates to the bot'
+        '\n\n**Added: **\n\n1. `.set_welcome` for server owners, now an embed will be sent for every new member joining a server'
     )
     em.set_thumbnail(url='https://i.postimg.cc/SRhJgzkS/logo-modified.png')
     em.set_image(url='https://i.postimg.cc/wv8KbfYt/pfp.png')
@@ -944,6 +952,31 @@ async def avatar(ctx, *, avamember: discord.Member = None):
     em.set_footer(text=f'Requested by {ctx.author}',
                   icon_url=ctx.author.avatar.url)
     await ctx.send(embed=em)
+
+@client.event
+async def on_guild_join(guild):
+    welcome_channels[guild.id] = None
+
+@client.command()
+async def set_welcome(ctx, channel: discord.TextChannel):
+    if ctx.author.guild_permissions.manage_channels and ctx.author == ctx.guild.owner:
+        welcome_channels[ctx.guild.id] = channel.id
+        await ctx.send(f"Welcome channel set to {channel.mention}")
+    else:
+        await ctx.send("You don't have permission to set the welcome channel.")
+
+@client.event
+async def on_member_join(member):
+    welcome_channel_id = welcome_channels.get(member.guild.id)
+    if welcome_channel_id:
+        welcome_channel = client.get_channel(welcome_channel_id)
+        welcome_message = discord.Embed(
+            title="👤 | New server member: ",
+            description=f"{member.mention} Has joined the server",
+            color=0xff006a
+        )
+        welcome_message.set_thumbnail(url="https://i.postimg.cc/fTJTwvhV/logo.png")
+        await welcome_channel.send(embed=welcome_message)
 
 
 @client.command()
