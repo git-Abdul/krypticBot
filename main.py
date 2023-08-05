@@ -425,7 +425,7 @@ async def help(ctx):
         description="React to the following embed to get a DM on the bot's commands",
         color=embedColor,
     )
-    em.set_thumbnail(url="https://i.postimg.cc/K8M4hNjG/tick.png")
+    em.set_thumbnail(url="https://i.postimg.cc/x1yCxVyN/tick.png")
 
     msg = await ctx.send(embed=em)
 
